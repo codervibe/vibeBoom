@@ -3,7 +3,7 @@
 
 ### 下载和使用 
 ~~~
-https://github.com/codervibe/vibeBoom.git
+git clone https://github.com/codervibe/vibeBoom.git
 cd vibeBoom/main
 python3 smsBoomAndPhoneBoom.py
 ~~~
