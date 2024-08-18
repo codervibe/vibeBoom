@@ -2580,8 +2580,11 @@ def start():
         executor.submit(request_url141)
         executor.submit(request_url142)
         executor.submit(request_url143)
-    print("----------------------------------")
-    print("轰死他😭")
+
 if __name__ == '__main__':
+    print("-------------轰炸开始----------------------")
     for i in range(0,int(numbers)):
+        print(f"-------------第{i}次轰炸开始----------------------")
         start()
+    print("-------------轰炸结束---------------------")
+    print("轰死他")
